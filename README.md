@@ -4,16 +4,17 @@
 In this project, we explore [heart beat sounds dataset](https://www.kaggle.com/datasets/kinguistics/heartbeat-sounds) for beat classification.
 
 # Outline of the project
-- Data preparation and cleaning
-    - [ ] preprocess .wav file
-    - [ ] noise filtering ?
-    - [ ] other cleaning techniques, if any.
-- Exploratory data analysis/visualization
-    - [ ] time series visualization of each class
-    - [ ] Fourier analysis
+- Data preparation and cleaning 
+    - [ ] preprocess .wav file (T)
+    - [ ] noise filtering ? (T)
+    - [ ] other cleaning techniques, if any. (T)
+- Exploratory data analysis/visualization (
+    - [ ] time series visualization of each class (KP)
+    - [ ] Fourier analysis (N)
+    - [ ] Other visualization, if any. (N)
 - Modeling
-    - [ ] ANN on fourier freq
-    - [ ] LSTM on whole wavelet
+    - [ ] ANN on fourier freq (N)
+    - [ ] LSTM on whole wavelet (KP)
     
 - Reference ? 
     - [Cleaning | outlier](https://pro.arcgis.com/en/pro-app/latest/tool-reference/space-time-pattern-mining/understanding-outliers-in-time-series-analysis.htm)
