@@ -21,3 +21,4 @@ In this project, we explore [heart beat sounds dataset](https://www.kaggle.com/d
     - [Cleaning | denoise-1](https://www.kaggle.com/code/residentmario/denoising-algorithms/notebook) 
     - [Cleaning | denoise-2](https://github.com/ebrahimpichka/LSM-denoise)
     - [Fourier](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.66.6950&rep=rep1&type=pdf)
+    - [MFCC | feature extraction](https://www.kaggle.com/code/gopidurgaprasad/mfcc-feature-extraction-from-audio/notebook)
