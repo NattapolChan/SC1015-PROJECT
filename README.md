@@ -1,4 +1,7 @@
 # SC1015-PROJECT
+- Chanpaisit Nattapol
+- Maison Sapol
+- Saeng-nil Natthakan
 
 Time Series Projectsssss
 

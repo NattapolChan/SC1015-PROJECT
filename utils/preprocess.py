@@ -9,7 +9,7 @@ import librosa
 import librosa.display
 
 
-PROJECT_DIR = 'path/to/SC1015_PROJECT'
+PROJECT_DIR = '/Users/nattapolchanpaisit/Documents/GitHub/Algorithm/SC1015-PROJECT/'
 class set_b_dataset(Dataset):
     def __init__(self, path: str):
         super().__init__()
@@ -33,10 +33,10 @@ class set_b_dataset(Dataset):
         return self.dataset[idx][0], self.dataset[idx][1]
         
     def show_wave(self, idx: int, **kwargs) -> librosa.display.AdaptiveWaveplot:
-        return librosa.display.waveshow(self.dataset[idx][0], sr=self.dataset[idx][1], *kwargs)
+        return librosa.display.waveshow(self.dataset[idx][0], sr=self.dataset[idx][1], **kwargs)
     
     def show_spec(self, idx: int, **kwargs) -> matplotlib.collections.QuadMesh:
-        return librosa.display.specshow(self.fft[idx], *kwargs)
+        return librosa.display.specshow(self.fft[idx], **kwargs)
     
     def denoise(self) -> None:
         # Add denoise function
