@@ -8,7 +8,7 @@ In this project, we explore [heart beat sounds dataset](https://www.kaggle.com/d
     - [ ] preprocess .wav file (T)
     - [ ] noise filtering ? (T)
     - [ ] other cleaning techniques, if any. (T)
-- Exploratory data analysis/visualization (
+- Exploratory data analysis/visualization 
     - [ ] time series visualization of each class (KP)
     - [ ] Fourier analysis (N)
     - [ ] Other visualization, if any. (N)
