@@ -3,7 +3,7 @@
 - Maison Sapol
 - Saeng-nil Natthakan
 
-Time Series Projectsssss
+Time Series Projects
 
 # About
 In this project, we explore [heart beat sounds dataset](https://www.kaggle.com/datasets/kinguistics/heartbeat-sounds) for beat classification.
