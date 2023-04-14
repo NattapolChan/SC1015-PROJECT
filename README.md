@@ -28,3 +28,5 @@ In this project, we explore [heart beat sounds dataset](https://www.kaggle.com/d
     - [Fourier](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.66.6950&rep=rep1&type=pdf)
     - ❌ [MFCC | feature extraction](https://www.kaggle.com/code/gopidurgaprasad/mfcc-feature-extraction-from-audio/notebook)
     - ❌ [DEEZ MFCC](https://www.youtube.com/watch?v=E9LGj9s9sbw)
+    - [Signal Filtering](https://swharden.com/blog/2020-09-23-signal-filtering-in-python/)
+    - [Classification Using Deep Learning](https://www.mdpi.com/1424-8220/19/21/4819)
