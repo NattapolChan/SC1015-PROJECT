@@ -9,7 +9,6 @@ import librosa
 import librosa.display
 import scipy
 
-
 PROJECT_DIR = '/Users/nattapolchanpaisit/Documents/GitHub/Algorithm/SC1015-PROJECT/'
 class set_b_dataset(Dataset):
     def __init__(self, path: str):
@@ -22,10 +21,14 @@ class set_b_dataset(Dataset):
                 self.filenames.append(name)
         self.dataset = []
         self.fft = []
+        sample_rate = []
+        duration = []
         for fn in self.filenames:
             data, samplerate = librosa.load(f'{PROJECT_DIR}dataset/{fn}')
             self.dataset.append([data, samplerate])
-            self.fft.append(librosa.amplitude_to_db(librosa.stft(data)))
+            self.fft.append(librosa.amplitude_to_db(np.abs(librosa.stft(data))))
+            sample_rate.append(samplerate)
+            duration.append(len(data)/samplerate)
         
         bpm = []
         peak_interval = []
@@ -42,18 +45,20 @@ class set_b_dataset(Dataset):
         self.metadata['bpm'] = bpm
         self.metadata['peak-interval'] = peak_interval
         self.metadata['peak-interval-timer'] = peak_interval_timer
+        self.metadata['duration'] = duration
+        self.metadata['sampling-rate'] = sample_rate
         
     def __len__(self) -> int:
         return len(self.dataset)
-
-    def __getitem__(self, idx: int) -> tuple[np.ndarray, int]:
-        return self.dataset[idx][0], self.dataset[idx][1]
+    
+    def __getitem__(self, idx: int) -> tuple[torch.Tensor, int]:
+        return torch.from_numpy(self.dataset[idx][0]), self.dataset[idx][1]
         
     def show_wave(self, idx: int, **kwargs) -> librosa.display.AdaptiveWaveplot:
         return librosa.display.waveshow(self.dataset[idx][0], sr=self.dataset[idx][1], **kwargs)
     
     def show_spec(self, idx: int, **kwargs) -> matplotlib.collections.QuadMesh:
-        return librosa.display.specshow(self.fft[idx], **kwargs)
+        return librosa.display.specshow(self.fft[idx], sr=self.dataset[idx][1], **kwargs)
     
     def denoise(self) -> None:
         # Add denoise function
