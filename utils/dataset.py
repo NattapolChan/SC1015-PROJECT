@@ -76,7 +76,9 @@ class set_b_dataset():
 class set_b_dataclass(Dataset):
     """ Custom dataset class for feeding stft into torch.utils.data.DataLoader
     """
-    def __init__(self, path: str, output_width=20, stft_low = 200, stft_high = 400, list_id = tuple([i for i in range(461)])) -> None:
+    def __init__(self, path: str, output_width=200, stft_low = 200, 
+                 stft_high = 400, list_id = tuple([i for i in range(461)]),
+                 oversample = False) -> None:
         super().__init__()
         self.SR = 22050 # default sampling rate
         self.W = output_width
@@ -96,19 +98,38 @@ class set_b_dataclass(Dataset):
             -> wave array: np.ndarray, (nframes)
             -> stft: np.ndarray, (freq_range * 10, nframes // 511)
         """
+        
+        self.count_normal = []
+        self.count_murmur = []
+        self.count_extrastole = []
         for i, fn in enumerate(self.filenames):
             if i in list_id:
                 data, _ = librosa.load(f'{path}dataset/{fn}')
                 self.dataset.append(data)
-                self.stft.append(librosa.amplitude_to_db(np.abs(librosa.stft(data))))
+                self.stft.append(librosa.amplitude_to_db(np.abs(librosa.stft(data, n_fft=2048))))
                 self.labels.append(self.metadata['label'][i])
+                
+                if self.labels[-1] == 'normal': 
+                    self.count_normal.append(len(self.labels)-1)
+                    continue
+                elif self.labels[-1] == 'murmur': 
+                    self.count_murmur.append(len(self.labels)-1)
+                    if oversample: self.augment_minority_classes()
+                else: 
+                    self.count_extrastole.append(len(self.labels)-1)
+                    if oversample: self.augment_minority_classes()
+                
+        self.count_class = pd.DataFrame()
+        self.count_class['count'] = [len(self.count_normal), len(self.count_murmur), len(self.count_extrastole)]
+        self.count_class['index'] = [self.count_normal, self.count_murmur, self.count_extrastole]
+        self.count_class['label'] = ['normal', 'murmur', 'extrastole']
         
     def __len__(self) -> int:
         return len(self.stft)
     
     def __getitem__(self, idx: int) -> tuple[torch.Tensor, int]:
         fft_torch = torch.Tensor(self.stft[idx])
-        fft_torch = fft_torch[self.stft_low//10:self.stft_high//10,:]
+        fft_torch = fft_torch[self.stft_low//5:self.stft_high//5,:]
         fft_torch = F.pad(fft_torch, (0, self.W-fft_torch.size(1)), "constant", 0)
         label = 0 if self.labels[idx]=='normal' else 1 if self.labels[idx]=='murmur' else 2
         return fft_torch, label
@@ -119,11 +140,18 @@ class set_b_dataclass(Dataset):
     def show_spec(self, idx: int, **kwargs) -> matplotlib.collections.QuadMesh:
         return librosa.display.specshow(self.stft[idx], sr=self.SR, **kwargs)
     
-    """event rate: murmur = 26.2%, extrastole = 13.1%
-        oversampling to 13.1%
+    """event rate: murmur = 100/461, extrastole = 50/461
+        oversampling: murmur x 2, extrastole x 2
     """
-    def augment_minority_class(self) -> None:
-        pass
+    def augment_minority_classes(self) -> None:
+        stft = self.stft[-1]
+        stft += np.random.normal(loc=0.0, scale=0.05, size=(stft.shape[0], stft.shape[1]))
+        self.stft.append(stft)
+        self.labels.append(self.labels[-1])
+        if self.labels[-1] == 'murmur':
+            self.count_murmur.append(len(self.labels)-1)
+        else:
+            self.count_extrastole.append(len(self.labels)-1)
     
     def denoise(self) -> None:
         # Add denoise function
