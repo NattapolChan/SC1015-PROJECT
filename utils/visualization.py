@@ -7,6 +7,7 @@ import numpy as np
 import librosa
 import librosa.display
 import IPython.display as ipd
+import scipy
 
 # load audio from filepath
 def get_audio(filepath):
@@ -77,3 +78,14 @@ def show_log_mel_spectrogram(mel_spec, sample_rate, hop_length):
     plt.xlabel('Time')
     plt.title('Log Mel Spectrogram')
     plt.show()
+
+# zero-phase butterworth filter of type band-pass
+# low, high: cutoffs in Hz
+def band_pass_filter(sound, low, high, order = 3, sample_rate = 22050):
+    low /= sample_rate/2
+    high /= sample_rate/2
+
+    b, a = scipy.signal.butter(order, (low, high), 'band')
+    filtered = scipy.signal.filtfilt(b, a, sound)
+
+    return filtered
