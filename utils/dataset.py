@@ -132,6 +132,7 @@ class set_b_dataclass(Dataset):
         fft_torch = fft_torch[self.stft_low//5:self.stft_high//5,:]
         fft_torch = F.pad(fft_torch, (0, self.W-fft_torch.size(1)), "constant", 0)
         label = 0 if self.labels[idx]=='normal' else 1 if self.labels[idx]=='murmur' else 2
+        fft_torch = (fft_torch - 15) / 25
         return fft_torch, label
         
     def show_wave(self, idx: int, **kwargs) -> librosa.display.AdaptiveWaveplot:

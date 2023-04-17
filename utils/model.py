@@ -84,7 +84,7 @@ class DeConvBlock(nn.Module):
         return nn.ReLU()(input)
     
 class ResNet10(nn.Module):
-    def __init__(self, channels=64, out_channels=3, dropout=0.3) -> None:
+    def __init__(self, input_size = (80, 400), channels=64, out_channels=3, dropout=0.3) -> None:
         super(ResNet10, self).__init__()
         self.ConvBlock_1 = ConvBlock(input_channel=channels, last=True)
         self.ConvBlock_2 = ConvBlock(input_channel=channels)
@@ -113,7 +113,7 @@ class ResNet10(nn.Module):
             nn.AvgPool2d(kernel_size=(2,2), stride=(2,2)), # 1/3 1/4 for EyeDiap
             nn.Flatten(),
             nn.Dropout(p=dropout),
-            nn.Linear(in_features=48*channels, out_features=channels//4),
+            nn.Linear(in_features=int(48*channels), out_features=channels//4),
             nn.Dropout(p=dropout),
             nn.Linear(in_features=channels//4, out_features=out_channels),
         )
