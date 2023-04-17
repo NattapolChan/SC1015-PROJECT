@@ -110,13 +110,20 @@ class set_b_dataclass(Dataset):
         fft_torch = torch.Tensor(self.stft[idx])
         fft_torch = fft_torch[self.stft_low//10:self.stft_high//10,:]
         fft_torch = F.pad(fft_torch, (0, self.W-fft_torch.size(1)), "constant", 0)
-        return fft_torch, self.labels[idx]
+        label = 0 if self.labels[idx]=='normal' else 1 if self.labels[idx]=='murmur' else 2
+        return fft_torch, label
         
     def show_wave(self, idx: int, **kwargs) -> librosa.display.AdaptiveWaveplot:
         return librosa.display.waveshow(self.dataset[idx], sr=self.SR, **kwargs)
     
     def show_spec(self, idx: int, **kwargs) -> matplotlib.collections.QuadMesh:
         return librosa.display.specshow(self.stft[idx], sr=self.SR, **kwargs)
+    
+    """event rate: murmur = 26.2%, extrastole = 13.1%
+        oversampling to 13.1%
+    """
+    def augment_minority_class(self) -> None:
+        pass
     
     def denoise(self) -> None:
         # Add denoise function
