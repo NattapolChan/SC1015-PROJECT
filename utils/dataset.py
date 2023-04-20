@@ -78,7 +78,7 @@ class set_b_dataclass(Dataset):
     """
     def __init__(self, path: str, output_width=200, stft_low = 200, 
                  stft_high = 400, list_id = tuple([i for i in range(461)]),
-                 oversample = False) -> None:
+                 oversample = False, out_classes = tuple('normal', 'murmur', 'extrastole')) -> None:
         super().__init__()
         self.SR = 22050 # default sampling rate
         self.W = output_width
@@ -106,29 +106,46 @@ class set_b_dataclass(Dataset):
             if i in list_id:
                 data, _ = librosa.load(f'{path}dataset/{fn}')
                 self.dataset.append(data)
-                self.stft.append(librosa.amplitude_to_db(np.abs(librosa.stft(data, n_fft=2048))))
-                self.labels.append(self.metadata['label'][i])
+                stft = librosa.amplitude_to_db(np.abs(librosa.stft(data, n_fft=2048)))
+                stft_torch = torch.Tensor(stft)
+                # shift window resampling
+                while (stft_torch.size(1) >= 200):
+                    self.stft.append(stft_torch[:, :200])
+                    stft_torch = stft_torch[:, 70:]
+                    self.labels.append(self.metadata['label'][i])
+                
+                if self.metadata['label'][i] in out_classes:
+                    self.stft.append(stft_torch)
+                    self.labels.append(self.metadata['label'][i])
                 
                 if self.labels[-1] == 'normal': 
                     self.count_normal.append(len(self.labels)-1)
-                    continue
-                elif self.labels[-1] == 'murmur': 
+                elif self.labels[-1] == 'murmur' and 'murmur' in out_classes: 
                     self.count_murmur.append(len(self.labels)-1)
-                    if oversample: self.augment_minority_classes()
-                else: 
+                    if oversample: 
+                        self.augment_minority_classes()
+                        self.augment_minority_classes()
+                elif self.labels[-1] == 'extrastole' and 'extrastole' in out_classes: 
                     self.count_extrastole.append(len(self.labels)-1)
-                    if oversample: self.augment_minority_classes()
+                    if oversample: 
+                        self.augment_minority_classes()
+                        self.augment_minority_classes()
+                        self.augment_minority_classes()
                 
         self.count_class = pd.DataFrame()
         self.count_class['count'] = [len(self.count_normal), len(self.count_murmur), len(self.count_extrastole)]
         self.count_class['index'] = [self.count_normal, self.count_murmur, self.count_extrastole]
         self.count_class['label'] = ['normal', 'murmur', 'extrastole']
         
+        print('Number of data per class')
+        print(self.count_class['count'])
+        # print(self.count_class)
+        
     def __len__(self) -> int:
         return len(self.stft)
     
     def __getitem__(self, idx: int) -> tuple[torch.Tensor, int]:
-        fft_torch = torch.Tensor(self.stft[idx])
+        fft_torch = self.stft[idx] + torch.Tensor(np.random.normal(loc=0.00, scale=1.0, size=(self.stft[idx].shape[0], self.stft[idx].shape[1])))
         fft_torch = fft_torch[self.stft_low//5:self.stft_high//5,:]
         fft_torch = F.pad(fft_torch, (0, self.W-fft_torch.size(1)), "constant", 0)
         label = 0 if self.labels[idx]=='normal' else 1 if self.labels[idx]=='murmur' else 2
@@ -142,16 +159,17 @@ class set_b_dataclass(Dataset):
         return librosa.display.specshow(self.stft[idx], sr=self.SR, **kwargs)
     
     """event rate: murmur = 100/461, extrastole = 50/461
-        oversampling: murmur x 2, extrastole x 2
+        oversampling: murmur x 2, extrastole x 4
     """
     def augment_minority_classes(self) -> None:
         stft = self.stft[-1]
-        stft += np.random.normal(loc=0.0, scale=0.05, size=(stft.shape[0], stft.shape[1]))
+        stft += np.random.normal(loc=0.0, scale=3.0, size=(stft.shape[0], stft.shape[1]))
         self.stft.append(stft)
-        self.labels.append(self.labels[-1])
         if self.labels[-1] == 'murmur':
+            self.labels.append('murmur')
             self.count_murmur.append(len(self.labels)-1)
         else:
+            self.labels.append('extrastole')
             self.count_extrastole.append(len(self.labels)-1)
     
     def denoise(self) -> None:
