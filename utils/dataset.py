@@ -56,7 +56,10 @@ class set_b_dataset():
     def __len__(self) -> int:
         return len(self.dataset)
         
-    def show_wave(self, idx: int, **kwargs) -> librosa.display.AdaptiveWaveplot:
+    def show_wave(self, idx: int, flatten=False, **kwargs) -> librosa.display.AdaptiveWaveplot:
+        sound_flatten = ((self.dataset[idx] > 1.5 * np.std(self.dataset[idx])) + (self.dataset[idx] < -1.5 * np.std(self.dataset[idx]))) * self.dataset[idx]
+        if flatten:
+            return librosa.display.waveshow(sound_flatten, sr=self.SR, **kwargs)
         return librosa.display.waveshow(self.dataset[idx], sr=self.SR, **kwargs)
     
     def show_spec(self, idx: int, **kwargs) -> matplotlib.collections.QuadMesh:
@@ -149,7 +152,8 @@ class set_b_dataclass(Dataset):
         return fft_torch, label
         
     def show_wave(self, idx: int, **kwargs) -> librosa.display.AdaptiveWaveplot:
-        return librosa.display.waveshow(self.dataset[idx], sr=self.SR, **kwargs)
+        sound_flatten = ((self.dataset[idx] > 0.15) + (self.dataset[idx] < -0.15)) * self.dataset[idx]
+        return librosa.display.waveshow(sound_flatten, sr=self.SR, **kwargs)
     
     def show_spec(self, idx: int, **kwargs) -> matplotlib.collections.QuadMesh:
         return librosa.display.specshow(self.stft[idx], sr=self.SR, **kwargs)

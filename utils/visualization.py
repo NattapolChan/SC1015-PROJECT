@@ -17,41 +17,40 @@ def get_audio(filepath):
 # display raw signals
 # X-axis: time
 # Y-axis: amplitude
-def show_waveform(sound, sample_rate):
-    plt.figure(figsize = (20, 5))
-    librosa.display.waveshow(sound, sr=sample_rate)
-    plt.xlabel('Time')
-    plt.ylabel('Amplitude')
-    plt.title('Signal Waveform')
-    plt.show()
+def show_waveform(sound, sample_rate, ax, **kwargs):
+    flattened_sound = ((sound > 1.5 * np.std(sound)) + (sound < -1.5 * np.std(sound))) * sound
+    flattened_sound = flattened_sound / np.max(flattened_sound)
+    librosa.display.waveshow(flattened_sound, sr=sample_rate, ax=ax, **kwargs)
+    ax.set_xlabel('Time')
+    ax.set_ylabel('Amplitude')
+    ax.set_title('Signal Waveform')
 
 # display sound spectrum
 # DFT using FFT
-def show_spectrum(sound, sample_rate):
-    fft = np.fft.fft(sound)
+def show_spectrum(sound, sample_rate, ax, **kwargs):
+    flattened_sound = ((sound > 1.5 * np.std(sound)) + (sound < -1.5 * np.std(sound))) * sound
+    fft = np.fft.fft(flattened_sound)
     amp = np.abs(fft) # amplitude of fourier
     t = np.linspace(0, sample_rate, len(amp))
-
-    plt.figure(figsize = (9, 6))
-    plt.plot(t[:len(t)//2], amp[:len(t)//2]) # remove complex conjugate from fft
-    plt.xlabel('Frequency')
-    plt.ylabel('Magnitude')
-    plt.title('Spectrum')
-    plt.show()
+    ax.plot(t[:len(t)//2], amp[:len(t)//2], **kwargs) # remove complex conjugate from fft
+    ax.set_xscale('log')
+    ax.set_xlabel('Frequency')
+    ax.set_ylabel('Magnitude')
+    ax.set_title('Spectrum')
 
 # display linear frequency power spectogram
 # STFT
-def show_spectrogram(sound, sample_rate, hop_length):
+def show_spectrogram(sound, sample_rate, hop_length, ax, **kwargs):
     stft = librosa.stft(sound, hop_length=hop_length)
     spec = librosa.amplitude_to_db(np.abs(stft), ref=np.max)
 
-    plt.figure(figsize=(12, 8))
-    librosa.display.specshow(spec, sr = sample_rate, x_axis = 'time', y_axis = 'linear', hop_length=hop_length)
-    plt.ylabel('Frequency')
-    plt.xlabel('Time')
-    plt.colorbar(format = '%2.0f dB')
-    plt.title('Spectrogram')
-    plt.show()
+    librosa.display.specshow(spec, sr = sample_rate, x_axis = 'time', 
+                             y_axis = 'linear', hop_length=hop_length, 
+                             ax=ax, **kwargs)
+    ax.set_ylabel('Frequency')
+    ax.set_xlabel('Time')
+    ax.colorbar(format = '%2.0f dB')
+    ax.set_title('Spectrogram')
 
 # mel-scale spectrogram
 def show_mel_spectrogram(sound, sample_rate, hop_length):
