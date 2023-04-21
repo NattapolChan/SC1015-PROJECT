@@ -62,12 +62,6 @@ class set_b_dataset():
     def show_spec(self, idx: int, **kwargs) -> matplotlib.collections.QuadMesh:
         return librosa.display.specshow(self.stft[idx], sr=self.SR, **kwargs)
     
-    def denoise(self) -> None:
-        # Add denoise function
-        # denoise self.dataset
-        # dtype(self.dataset): [magnitude array: float, samplerate: int]
-        pass
-    
     def aproximate_bpm(self, index) -> np.ndarray:
         peak_array, _ = scipy.signal.find_peaks(self.dataset[index], height=0.1, 
                                                 distance=0.2*self.SR)
@@ -78,7 +72,8 @@ class set_b_dataclass(Dataset):
     """
     def __init__(self, path: str, output_width=200, stft_low = 200, 
                  stft_high = 400, list_id = tuple([i for i in range(461)]),
-                 oversample = False, out_classes = tuple('normal', 'murmur', 'extrastole')) -> None:
+                 oversample = False, out_classes = list(('normal', 'murmur', 'extrastole')),
+                 denoise=True) -> None:
         super().__init__()
         self.SR = 22050 # default sampling rate
         self.W = output_width
@@ -106,7 +101,9 @@ class set_b_dataclass(Dataset):
             if i in list_id:
                 data, _ = librosa.load(f'{path}dataset/{fn}')
                 self.dataset.append(data)
-                stft = librosa.amplitude_to_db(np.abs(librosa.stft(data, n_fft=2048)))
+                if denoise:
+                    self.dataset[-1] = self.denoiser(data)
+                stft = librosa.amplitude_to_db(np.abs(librosa.stft(self.dataset[-1], n_fft=2048)))
                 stft_torch = torch.Tensor(stft)
                 # shift window resampling
                 while (stft_torch.size(1) >= 200):
@@ -139,7 +136,6 @@ class set_b_dataclass(Dataset):
         
         print('Number of data per class')
         print(self.count_class['count'])
-        # print(self.count_class)
         
     def __len__(self) -> int:
         return len(self.stft)
@@ -172,8 +168,19 @@ class set_b_dataclass(Dataset):
             self.labels.append('extrastole')
             self.count_extrastole.append(len(self.labels)-1)
     
-    def denoise(self) -> None:
-        # Add denoise function
-        # denoise self.dataset
-        # dtype(self.dataset): [magnitude array: float, samplerate: int]
-        pass
+    def fft_denoiser(self, x, n_components, to_real=True):
+        n = len(x)
+        fft = np.fft.fft(x, n)
+        PSD = fft * np.conj(fft) / n
+        _mask = PSD > n_components
+        fft = _mask * fft
+        clean_data = np.fft.ifft(fft)
+        if to_real:
+            clean_data = clean_data.real
+        return clean_data
+
+    def denoiser(self, wave:np.ndarray) -> np.ndarray:
+        noised_data = self.fft_denoiser(wave, 0.001)
+        sos = scipy.signal.butter(1, 250, 'hp', fs=22050, output='sos')
+        filtered_noised_data = scipy.signal.sosfilt(sos, noised_data)
+        return filtered_noised_data
