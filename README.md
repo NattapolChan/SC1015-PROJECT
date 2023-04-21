@@ -17,7 +17,7 @@ In this project, we explore [heart beat sounds dataset](https://www.kaggle.com/d
 | ResNet10 (normal vs {murmur, extrastole}) <br/>+<br/> ResNet10 (murmur vs extrastole) | STFT | | | | | |
 | | | | | | | |
 # Insight
-- One vs All Classification model perform much worse than One vs One model
+- One vs One Classification model perform much worse than One vs All model
 - 
 
 # limitation
