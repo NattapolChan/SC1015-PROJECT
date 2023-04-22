@@ -238,6 +238,7 @@ The results for each feature are presented below. The feature with the highest p
     <td>0.47</td>
     <td>0.29</td>
 </tr>
+</table>
 
 
 **NOTE:** Features that exhibit practical performance should be able to detect the diseased classes (murmur and extrasystole) as part of the feasible screening stage, i.e., erroneously classifying *normal* as *diseased* is not as lethal as classifying *diseased* as *normal*. The goal in this case is then to maximise the recall and precision of minority classes.
