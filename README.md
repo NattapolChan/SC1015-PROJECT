@@ -44,10 +44,14 @@ The results for each feature are presented below. The feature with the highest p
 <tr>
     <th rowspan="2">Feature used</th>
     <th rowspan="2">Accuracy</th>
-    <th colspan="3">Murmur Metrics</th>
-    <th colspan="3">Extrasystole Metrics</th>
+    <th colspan="3">Normal</th>
+    <th colspan="3">Murmur</th>
+    <th colspan="3">Extrasystole</th>
 </tr>
 <tr>
+    <th>Precision</th>
+    <th>Recall</th>
+    <th>F1-score</th>
     <th>Precision</th>
     <th>Recall</th>
     <th>F1-score</th>
@@ -58,6 +62,9 @@ The results for each feature are presented below. The feature with the highest p
 <tr>
     <td>Mel spectrogram</td>
     <td>0.82</td>
+    <td>1.00</td>
+    <td>0.75</td>
+    <td>0.85</td>
     <td>0.59</td>
     <td>1.00</td>
     <td>0.75</td>
@@ -67,6 +74,9 @@ The results for each feature are presented below. The feature with the highest p
 </tr>
 <tr>
     <td>MFCC</td>
+    <td>0.83</td>
+    <td>0.71</td>
+    <td>0.77</td>
     <td>0.69</td>
     <td>0.50</td>
     <td>0.74</td>
@@ -77,6 +87,9 @@ The results for each feature are presented below. The feature with the highest p
 </tr>
 <tr>
     <td>Chroma STFT</td>
+    <td>0.75</td>
+    <td>0.70</td>
+    <td>0.72</td>
     <td>0.63</td>
     <td>0.40</td>
     <td>0.63</td>
@@ -87,6 +100,9 @@ The results for each feature are presented below. The feature with the highest p
 </tr>
 <tr>
     <td>Spectral Contrast</td>
+    <td>0.68</td>
+    <td>0.70</td>
+    <td>0.69</td>
     <td>0.55</td>
     <td>0.28</td>
     <td>0.26</td>
@@ -97,6 +113,9 @@ The results for each feature are presented below. The feature with the highest p
 </tr>
 <tr>
     <td>Tonnetz</td>
+    <td>0.81</td>
+    <td>0.27</td>
+    <td>0.40</td>
     <td>0.45</td>
     <td>0.28</td>
     <td>0.84</td>
@@ -107,6 +126,9 @@ The results for each feature are presented below. The feature with the highest p
 </tr>
 <tr>
     <td>Zero Crossing Rate</td>
+    <td>0.83</td>
+    <td>0.48</td>
+    <td>0.61</td>
     <td>0.54</td>
     <td>0.41</td>
     <td>0.63</td>
@@ -117,6 +139,9 @@ The results for each feature are presented below. The feature with the highest p
 </tr>
 <tr>
     <td>All features Concatenated</td>
+    <td>0.72</td>
+    <td>0.84</td>
+    <td>0.77</td>
     <td>0.67</td>
     <td>0.50</td>
     <td>0.42</td>
@@ -126,7 +151,6 @@ The results for each feature are presented below. The feature with the highest p
     <td>0.14</td>
 </tr>
 </table>
-
 
 
 # Results from STFT specific band frequency
