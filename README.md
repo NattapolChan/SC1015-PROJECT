@@ -25,7 +25,7 @@ In this project, ```InceptionTime``` architecture is utilised. We found that Inc
 
 - **Zero-crossing rate** (1 feature): Zero-crossing rate is the rate at which the audio signal changes its sign (crosses the zero-amplitude line). It is a simple feature that can provide information about the audio signal's frequency content and can be useful in tasks like speech/music classification and onset detection.
 
-The results for each feature are presented below. The feature with the highest performance in the minority classes is the Mel spectrogram, which is a scaled version of the STFT. Consequently, we decided to simplify insights by identifying the frequency bands that can be used to predict heart conditions with reasonable efficacy.
+The results for each feature are presented below. The feature with the highest performance in the minority classes is the Mel spectrogram, which is a scaled version of the STFT. Consequently, we decided to further explore by identifying the frequency bands that can be used to predict heart conditions with reasonable efficacy instead of using the whole range of frequency.
 
 # Results from features experimentation
 | Feature used | Accuracy | Precision (murmur) | Recall (murmur) | F1-score (murmur) | Precision (extrasystole) | Recall (extrasystole) | F1-score (extrasystole) |
