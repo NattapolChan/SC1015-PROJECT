@@ -9,7 +9,7 @@ In this project, we examine the [heart beat sounds dataset](https://www.kaggle.c
 # Exploratory Data Analysis (EDA)
 The number of data points in each class is determined: {normal: 320, murmur: 95, extrasystole: 46}. This indicates an imbalance in the data that needs to be addressed. We visualised the sound waveform, frequency spectrum, and power spectrogram. We identified the presence of noise in some audio files, which requires cleaning. Additionally, we noticed the variation in length of each sound data. This requires an additional step of preprocess (padding/slicing) later before training the model.
 # Preprocess
-We denoised audio files by eliminating specific frequencies that persist in a power spectral density noted in the visualised spectrograms. The visualisations of the Short-Time Fourier Transform (STFT) before and after denoising can be seen in ```EDA+Preprocessing.ipynb```. Additionally, we perform data augmentation for the underrepresented classes (murmur and extrasystole) by introducing low intensity white noise.
+We denoised audio files by eliminating specific frequencies that persist in a power spectral density noted in the visualised spectrograms. The visualisations of the Short-Time Fourier Transform (STFT) before and after denoising can be seen in ```EDA+Preprocessing.ipynb```. Additionally, we attempted to reduce the effect of imbalance of data classes by introducing class weights. Unfortunately, this approach yielded unpromising results. Instead, data augmentation by adding low intensity white noise is used for oversampling the underrepresented classes (murmur and extrasystole).
 # Machine Learning models
 In this project, ```InceptionTime``` architecture is utilised. We found that InceptionTime generally provides better performance while containing fewer parameters, resulting in shorter training times. As a result, all of our models are based on the InceptionTime architecture. We attempted to feed the model with raw audio data, but the results were unsatisfactory, and it took an enormous amount of time to train the model due to the excessive length of the features. As a result, we then experimented with features provided by the ```librosa``` library, such as Mel-frequency cepstral coefficients (MFCCs), Mel spectrogram, Chroma STFT, Spectral Contrast, Tonnetz, and Zero Crossing Rate (all features have 216 timesteps). We also tried concatenating all features together. The details of each feature are as follows:
 
@@ -248,25 +248,11 @@ The results for each feature are presented below. The feature with the highest p
 
 # Limitation
 - 
-
-# Outline of the project
-- Data preparation and cleaning 
-    - [ ] preprocess .wav file (T)
-    - [ ] noise filtering ? (T)
-    - [ ] other cleaning techniques, if any. (T)
-- Exploratory data analysis/visualization 
-    - [ ] time series visualization of each class (KP)
-    - [ ] Fourier analysis (N)
-    - [ ] Other visualization, if any. (N)
-- Modeling
-    - [ ] ANN on fourier freq (N)
-    - [ ] LSTM on whole wavelet (KP)
     
-- Reference ? 
-    - [Cleaning | outlier](https://pro.arcgis.com/en/pro-app/latest/tool-reference/space-time-pattern-mining/understanding-outliers-in-time-series-analysis.htm)
-    - [Cleaning | denoise-1](https://www.kaggle.com/code/residentmario/denoising-algorithms/notebook) 
-    - [Cleaning | denoise-2](https://github.com/ebrahimpichka/LSM-denoise)
-    - [Fourier](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.66.6950&rep=rep1&type=pdf)
-    - [MFCC | feature extraction](https://www.kaggle.com/code/gopidurgaprasad/mfcc-feature-extraction-from-audio/notebook)
+# Reference
     - [Signal Filtering](https://swharden.com/blog/2020-09-23-signal-filtering-in-python/)
-    - [Classification Using Deep Learning](https://www.mdpi.com/1424-8220/19/21/4819)
+    - [Audio Data Augmentation](https://pytorch.org/audio/main/tutorials/audio_data_augmentation_tutorial.html#)
+    - [Fourier](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.66.6950&rep=rep1&type=pdf)
+    - [Mel Spectrogram](https://medium.com/analytics-vidhya/understanding-the-mel-spectrogram-fca2afa2ce53)
+    - [MFCC](https://medium.com/@tanveer9812/mfccs-made-easy-7ef383006040)
+    - [Audio Feature Extraction](https://librosa.org/doc/main/feature.html)
