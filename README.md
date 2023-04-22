@@ -22,8 +22,7 @@ We experimented with two architectures: ResNet and InceptionTime. We found that 
 - Tonnetz (6 features): Tonnetz features capture the harmonic relations between the pitches in the audio signal, providing information about the harmonic structure and musical content of the sound. They are derived from the chroma features and are useful in audio classification tasks.
 - Zero-crossing rate (1 feature): Zero-crossing rate is the rate at which the audio signal changes its sign (crosses the zero-amplitude line). It is a simple feature that can provide information about the audio signal's frequency content and can be useful in tasks like speech/music classification and onset detection.
 
-Results of each feature are shown below.
-Feature with the highest performance in minor classes is Mel spectrogram which is a scaled version of STFT. As a result, we decided to simplify insights by finding out which frequency band that can be used to predict heart condition with reasonable efficacy.
+The results for each feature are presented below. The feature with the highest performance in the minority classes is the Mel spectrogram, which is a scaled version of the STFT. Consequently, we decided to simplify insights by identifying the frequency bands that can be used to predict heart conditions with reasonable efficacy.
 
 # Results from features experimentation
 | Feature used | Accuracy | Precision (murmur) | Recall (murmur) | F1-score (murmur) | Precision (extrasystole) | Recall (extrasystole) | F1-score (extrasystole) |
