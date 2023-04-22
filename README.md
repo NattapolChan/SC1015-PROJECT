@@ -250,9 +250,9 @@ The results for each feature are presented below. The feature with the highest p
 - 
     
 # Reference
-    - [Signal Filtering](https://swharden.com/blog/2020-09-23-signal-filtering-in-python/)
-    - [Audio Data Augmentation](https://pytorch.org/audio/main/tutorials/audio_data_augmentation_tutorial.html#)
-    - [Fourier](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.66.6950&rep=rep1&type=pdf)
-    - [Mel Spectrogram](https://medium.com/analytics-vidhya/understanding-the-mel-spectrogram-fca2afa2ce53)
-    - [MFCC](https://medium.com/@tanveer9812/mfccs-made-easy-7ef383006040)
-    - [Audio Feature Extraction](https://librosa.org/doc/main/feature.html)
+- [Signal Filtering](https://swharden.com/blog/2020-09-23-signal-filtering-in-python/)
+- [Audio Data Augmentation](https://pytorch.org/audio/main/tutorials/audio_data_augmentation_tutorial.html#)
+- [Fourier](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.66.6950&rep=rep1&type=pdf)
+- [Mel Spectrogram](https://medium.com/analytics-vidhya/understanding-the-mel-spectrogram-fca2afa2ce53)
+- [MFCC](https://medium.com/@tanveer9812/mfccs-made-easy-7ef383006040)
+- [Audio Feature Extraction](https://librosa.org/doc/main/feature.html)
