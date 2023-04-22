@@ -132,3 +132,7 @@ dmypy.json
 
 runs/**
 **.local
+
+**.pkl
+Tensorflow.ipynb
+TSAI.ipynb
