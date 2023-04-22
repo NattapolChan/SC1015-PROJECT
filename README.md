@@ -161,19 +161,6 @@ The results for each feature are presented below. The feature with the highest p
     <th>F1-score</th>
 </tr>
 <tr>
-    <td>Mel spectrogram</td>
-    <td>0.82</td>
-    <td>1.00</td>
-    <td>0.75</td>
-    <td>0.85</td>
-    <td>0.59</td>
-    <td>1.00</td>
-    <td>0.75</td>
-    <td>0.71</td>
-    <td>0.91</td>
-    <td>0.80</td>
-</tr>
-<tr>
     <td>STFT (0-100 Hz)</td>
     <td>0.59</td>
     <td>0.41</td>
