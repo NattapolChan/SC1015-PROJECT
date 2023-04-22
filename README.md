@@ -140,16 +140,105 @@ The results for each feature are presented below. The feature with the highest p
 </tr>
 </table>
 
-
 # Results from STFT specific band frequency
-| Feature used | Accuracy | Precision (murmur) | Recall (murmur) | F1-score (murmur) | Precision (extrasystole) | Recall (extrasystole) | F1-score (extrasystole) |
-| - | - | - | - | - | - | -| - |
-| STFT (0-100 Hz) | 0.59 | 0.81 | 0.83 | 0.82 | 0.57 | 0.69 | 0.62 |
-| STFT (50-150 Hz) | 0.57 | 0.52 | 0.60 | 0.56 | 0.76 | 0.58 | 0.65 |
-| STFT (100-200 Hz) | 0.69 | 0.80 | 0.48 | 0.60 | 0.77 | 0.81 | 0.79 |
-| STFT (200-300 Hz) | 0.66 | 0.72 | 0.84 | 0.78 | 1.00 | 0.12 | 0.21 |
-| STFT (300-400 Hz) | - | - | - | - | - | - | - |
-| Mel spectrogram | 0.82 | 0.59 | 1.00 | 0.75 | 0.71 | 0.91 | 0.80 |
+<table>
+<tr>
+    <th rowspan="2">Feature used</th>
+    <th rowspan="2">Accuracy</th>
+    <th colspan="3">Normal</th>
+    <th colspan="3">Murmur</th>
+    <th colspan="3">Extrasystole</th>
+</tr>
+<tr>
+    <th>Precision</th>
+    <th>Recall</th>
+    <th>F1-score</th>
+    <th>Precision</th>
+    <th>Recall</th>
+    <th>F1-score</th>
+    <th>Precision</th>
+    <th>Recall</th>
+    <th>F1-score</th>
+</tr>
+<tr>
+    <td>Mel spectrogram</td>
+    <td>0.82</td>
+    <td>1.00</td>
+    <td>0.75</td>
+    <td>0.85</td>
+    <td>0.59</td>
+    <td>1.00</td>
+    <td>0.75</td>
+    <td>0.71</td>
+    <td>0.91</td>
+    <td>0.80</td>
+</tr>
+<tr>
+    <td>STFT (0-100 Hz)</td>
+    <td>0.59</td>
+    <td>0.41</td>
+    <td>0.71</td>
+    <td>0.52</td>
+    <td>0.81</td>
+    <td>0.83</td>
+    <td>0.82</td>
+    <td>0.57</td>
+    <td>0.69</td>
+    <td>0.62</td>
+</tr>
+<tr>
+    <td>STFT (50-150 Hz)</td>
+    <td>0.57</td>
+    <td>0.76</td>
+    <td>0.58</td>
+    <td>0.65</td>
+    <td>0.52</td>
+    <td>0.60</td>
+    <td>0.56</td>
+    <td>0.24</td>
+    <td>0.50</td>
+    <td>0.32</td>
+</tr>
+<tr>
+    <td>STFT (100-200 Hz)</td>
+    <td>0.69</td>
+    <td>0.77</td>
+    <td>0.81</td>
+    <td>0.79</td>
+    <td>0.80</td>
+    <td>0.48</td>
+    <td>0.60</td>
+    <td>0.21</td>
+    <td>0.47</td>
+    <td>0.29</td>
+</tr>
+<tr>
+    <td>STFT (150-250 Hz)</td>
+    <td>0.69</td>
+    <td>0.77</td>
+    <td>0.81</td>
+    <td>0.79</td>
+    <td>0.80</td>
+    <td>0.48</td>
+    <td>0.60</td>
+    <td>0.21</td>
+    <td>0.47</td>
+    <td>0.29</td>
+</tr>
+<tr>
+    <td>STFT (200-300 Hz)</td>
+    <td>0.69</td>
+    <td>0.77</td>
+    <td>0.81</td>
+    <td>0.79</td>
+    <td>0.80</td>
+    <td>0.48</td>
+    <td>0.60</td>
+    <td>0.21</td>
+    <td>0.47</td>
+    <td>0.29</td>
+</tr>
+
 
 **NOTE:** Features that exhibit practical performance should be able to detect the diseased classes (murmur and extrasystole) as part of the feasible screening stage, i.e., erroneously classifying *normal* as *diseased* is not as lethal as classifying *diseased* as *normal*. The goal in this case is then to maximise the recall and precision of minority classes.
 
