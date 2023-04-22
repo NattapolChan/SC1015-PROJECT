@@ -29,9 +29,9 @@ The results for each feature are presented below. The feature with the highest p
 
 # Results from features experimentation
  
-| | | <td colspan=3>triple  <td colspan=2> | <td colspan=3>triple  <td colspan=2> |
-| Feature used | Accuracy | Precision (murmur) | Recall (murmur) | F1-score (murmur) | Precision (extrasystole) | Recall (extrasystole) | F1-score (extrasystole) |
-| - | - | - | - | - | - | - | - |
+| Feature used | Accuracy | | Murmur Metrics | | | Extrasystole Metrics | | |
+| - | - | - | - | - | - | - | - | - |
+| | | Precision | Recall | F1-score | Precision | Recall | F1-score |
 | Mel spectrogram | 0.82 | 0.59 | 1.00 | 0.75 | 0.71 | 0.91 | 0.80 |
 | MFCC | 0.69 | 0.50 | 0.74 | 0.60 | 0.45 | 0.45 | 0.45 |
 | Chroma STFT | 0.63 | 0.40 | 0.63 | 0.49 | 0.75 | 0.27 | 0.40 |
@@ -39,6 +39,7 @@ The results for each feature are presented below. The feature with the highest p
 | Tonnetz | 0.45 | 0.28 | 0.84 | 0.42 | 0.64 | 0.82 | 0.72 |
 | Zero Crossing Rate | 0.54 | 0.41 | 0.63 | 0.50 | 0.29 | 0.73 | 0.41 |
 | All features Concatenated | 0.67 | 0.50 | 0.42 | 0.46 | 0.33 | 0.09 | 0.14 |
+
 
 # Results from STFT specific band frequency
 | Feature used | Accuracy | Precision (murmur) | Recall (murmur) | F1-score (murmur) | Precision (extrasystole) | Recall (extrasystole) | F1-score (extrasystole) |
