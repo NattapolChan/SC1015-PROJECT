@@ -43,7 +43,7 @@ The results for each feature are presented below. The feature with the highest p
 | - | - | - | - | - | - | - | - |
 | Mel spectrogram | 0.82 | 0.59 | 1.00 | 0.75 | 0.71 | 0.91 | 0.80 |
 
-**NOTE:** The features that exhibit practical performance should be able to detect the diseased classes (murmur and extrasystole) as part of the feasible screening stage, i.e., erroneously classifying *normal* as *diseased* is not as lethal as classifying *diseased* as *normal*. The goal in this case is then to maximise the recall of minority classes.
+**NOTE:** Features that exhibit practical performance should be able to detect the diseased classes (murmur and extrasystole) as part of the feasible screening stage, i.e., erroneously classifying *normal* as *diseased* is not as lethal as classifying *diseased* as *normal*. The goal in this case is then to maximise the recall and precision of minority classes.
 
 # Insight
 
