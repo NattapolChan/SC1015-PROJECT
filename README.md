@@ -282,3 +282,4 @@ The results for each feature are presented below. The feature with the highest p
 - [Mel Spectrogram](https://medium.com/analytics-vidhya/understanding-the-mel-spectrogram-fca2afa2ce53)
 - [MFCC](https://medium.com/@tanveer9812/mfccs-made-easy-7ef383006040)
 - [Audio Feature Extraction](https://librosa.org/doc/main/feature.html)
+- [InceptionTime](https://link.springer.com/article/10.1007/s10618-020-00710-y)
