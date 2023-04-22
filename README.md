@@ -3,8 +3,6 @@
 - Maison Sapol
 - Saeng-nil Natthakan
 
-Time Series Projects
-
 # About
 In this project, we examine the [heart beat sounds dataset](https://www.kaggle.com/datasets/kinguistics/heartbeat-sounds), with a particular focus on developing the initial screening stage for cardiac pathologies in a hospital setting. Our attention is directed towards dataset B, which consists of heartbeat audio files obtained from clinical trials in hospitals using digital stethoscopes. Our objective is to classify the heartbeat audio into normal, murmur, and extrasystole conditions. Additionally, we have discovered interesting findings by experimenting with features that can contribute to further advancements in this research area.
 
