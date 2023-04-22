@@ -40,6 +40,7 @@ The results for each feature are presented below. The feature with the highest p
 
 # Results from STFT specific band frequency
 | Feature used | Accuracy | Precision (murmur) | Recall (murmur) | F1-score (murmur) | Precision (extrasystole) | Recall (extrasystole) | F1-score (extrasystole) |
+| - | - | - | - | - | - | -| - |
 | STFT (0-100 Hz) | 0.59 | 0.81 | 0.83 | 0.82 | 0.57 | 0.69 | 0.62 |
 | STFT (50-150 Hz) | 0.57 | 0.52 | 0.60 | 0.56 | 0.76 | 0.58 | 0.65 |
 | STFT (100-200 Hz) | 0.69 | 0.80 | 0.48 | 0.60 | 0.77 | 0.81 | 0.79 |
