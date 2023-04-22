@@ -265,17 +265,17 @@ The results for each feature are presented below. The feature with the highest p
     <td>0.56</td>
 </tr>
 <tr> 
-    <td>STFT (400-500 Hz) *** not yet updated</td>
-    <td>0.57</td>
+    <td>STFT (400-500 Hz)</td>
     <td>0.60</td>
-    <td>0.34</td>
-    <td>0.43</td>
-    <td>0.80</td>
+    <td>0.92</td>
+    <td>0.29</td>
+    <td>0.44</td>
+    <td>0.66</td>
+    <td>0.72</td>
+    <td>0.69</td>
+    <td>0.48</td>
+    <td>0.89</td>
     <td>0.63</td>
-    <td>0.71</td>
-    <td>0.41</td>
-    <td>0.87</td>
-    <td>0.56</td>
 </tr>
 <tr>
     <td>STFT (500-600 Hz)</td>
@@ -289,6 +289,19 @@ The results for each feature are presented below. The feature with the highest p
     <td>0.34</td>
     <td>0.60</td>
     <td>0.43</td>
+</tr>
+<tr>
+    <td>STFT (600-700 Hz)</td>
+    <td>0.47</td>
+    <td>0.56</td>
+    <td>0.53</td>
+    <td>0.55</td>
+    <td>0.44</td>
+    <td>0.29</td>
+    <td>0.35</td>
+    <td>0.37</td>
+    <td>0.47</td>
+    <td>0.42</td>
 </tr>
 </table>
 
