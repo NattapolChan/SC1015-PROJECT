@@ -188,16 +188,16 @@ The results for each feature are presented below. The feature with the highest p
 </tr>
 <tr>
     <td>STFT (100-200 Hz)</td>
-    <td>0.69</td>
-    <td>0.77</td>
-    <td>0.81</td>
-    <td>0.79</td>
-    <td>0.80</td>
-    <td>0.48</td>
-    <td>0.60</td>
-    <td>0.21</td>
+    <td>0.51</td>
+    <td>0.75</td>
+    <td>0.40</td>
+    <td>0.52</td>
     <td>0.47</td>
-    <td>0.29</td>
+    <td>0.44</td>
+    <td>0.46</td>
+    <td>0.39</td>
+    <td>0.79</td>
+    <td>0.53</td>
 </tr>
 <tr>
     <td>STFT (200-300 Hz)</td>
@@ -264,6 +264,19 @@ The results for each feature are presented below. The feature with the highest p
     <td>0.47</td>
     <td>0.42</td>
 </tr>
+<tr>
+    <td>STFT (700-800 Hz)</td>
+    <td>0.20</td>
+    <td>0.84</td>
+    <td>0.17</td>
+    <td>0.29</td>
+    <td>0.00</td>
+    <td>0.00</td>
+    <td>0.00</td>
+    <td>0.12</td>
+    <td>1.00</td>
+    <td>0.22</td>
+</tr>
 </table>
 
 
@@ -273,6 +286,9 @@ The results for each feature are presented below. The feature with the highest p
 
 
 # Limitation
+- Dataset is highly imbalance in class (320 for 'normal', compared to 45, 96 for 'extrasystole' and 'murmur' respectively)
+- Number of data is considerably small
+- Detecting and removing background noise is challenging and can be inaccurate.
 - 
     
 # Reference
