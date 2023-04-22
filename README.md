@@ -1,4 +1,4 @@
-# SC1015-PROJECT-B140
+# SC1015-PROJECT-B140-Team2
 - Chanpaisit Nattapol
 - Maison Sapol
 - Saeng-nil Natthakan
