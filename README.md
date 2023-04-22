@@ -13,11 +13,11 @@ In this project, we explore [heart beat sounds dataset](https://www.kaggle.com/d
 # Result
 | Model | Feature used | Accuracy | TPR (murmur) | FPR (murmur) | TPR (extrastole) | FPR (extrastole) |
 | - | - | - | - | - | - | - |
-| ResNet10 (one vs one) | STFT | | | | | |
-| ResNet10 (normal vs {murmur, extrastole}) <br/>+<br/> ResNet10 (murmur vs extrastole) | STFT | | | | | |
-| | | | | | | |
+| ResNet10 | STFT (0-96 Hz) | 0.82 | 0.84 | 0.15 | 0.00 | 0.00 |
+| ResNet10 | STFT (50-146 Hz) | 0.49 | 0.74 | 0.25 | 0.44 | 0.29 |
+| ResNet10 | STFT (400-496 Hz) | 0.56 | 0.49 | 0.34 | 0.21 | 0.13 |
 # Insight
-- One vs One Classification model perform much worse than One vs All model
+- 
 - 
 
 # limitation
