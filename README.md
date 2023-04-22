@@ -40,6 +40,94 @@ The results for each feature are presented below. The feature with the highest p
 | Zero Crossing Rate | 0.54 | 0.41 | 0.63 | 0.50 | 0.29 | 0.73 | 0.41 |
 | All features Concatenated | 0.67 | 0.50 | 0.42 | 0.46 | 0.33 | 0.09 | 0.14 |
 
+<table>
+<tr>
+    <th rowspan="2">Feature used</th>
+    <th rowspan="2">Accuracy</th>
+    <th colspan="3">Murmur Metrics</th>
+    <th colspan="3">Extrasystole Metrics</th>
+</tr>
+<tr>
+    <th>Precision</th>
+    <th>Recall</th>
+    <th>F1-score</th>
+    <th>Precision</th>
+    <th>Recall</th>
+    <th>F1-score</th>
+</tr>
+<tr>
+    <td>Mel spectrogram</td>
+    <td>0.82</td>
+    <td>0.59</td>
+    <td>1.00</td>
+    <td>0.75</td>
+    <td>0.71</td>
+    <td>0.91</td>
+    <td>0.80</td>
+</tr>
+<tr>
+    <td>MFCC</td>
+    <td>0.69</td>
+    <td>0.50</td>
+    <td>0.74</td>
+    <td>0.60</td>
+    <td>0.45</td>
+    <td>0.45</td>
+    <td>0.45</td>
+</tr>
+<tr>
+    <td>Chroma STFT</td>
+    <td>0.63</td>
+    <td>0.40</td>
+    <td>0.63</td>
+    <td>0.49</td>
+    <td>0.75</td>
+    <td>0.27</td>
+    <td>0.40</td>
+</tr>
+<tr>
+    <td>Spectral Contrast</td>
+    <td>0.55</td>
+    <td>0.28</td>
+    <td>0.26</td>
+    <td>0.27</td>
+    <td>0.20</td>
+    <td>0.18</td>
+    <td>0.19</td>
+</tr>
+<tr>
+    <td>Tonnetz</td>
+    <td>0.45</td>
+    <td>0.28</td>
+    <td>0.84</td>
+    <td>0.42</td>
+    <td>0.64</td>
+    <td>0.82</td>
+    <td>0.72</td>
+</tr>
+<tr>
+    <td>Zero Crossing Rate</td>
+    <td>0.54</td>
+    <td>0.41</td>
+    <td>0.63</td>
+    <td>0.50</td>
+    <td>0.29</td>
+    <td>0.73</td>
+    <td>0.41</td>
+</tr>
+<tr>
+    <td>All features Concatenated</td>
+    <td>0.67</td>
+    <td>0.50</td>
+    <td>0.42</td>
+    <td>0.46</td>
+    <td>0.33</td>
+    <td>0.09</td>
+    <td>0.14</td>
+</tr>
+</table>
+
+
 
 # Results from STFT specific band frequency
 | Feature used | Accuracy | Precision (murmur) | Recall (murmur) | F1-score (murmur) | Precision (extrasystole) | Recall (extrasystole) | F1-score (extrasystole) |
