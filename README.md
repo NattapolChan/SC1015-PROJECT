@@ -28,18 +28,6 @@ In this project, ```InceptionTime``` architecture is utilised. We found that Inc
 The results for each feature are presented below. The feature with the highest performance in the minority classes is the Mel spectrogram, which is a scaled version of the STFT. Consequently, we decided to further explore by identifying the frequency bands that can be used to predict heart conditions with reasonable efficacy instead of using the whole range of frequency.
 
 # Results from features experimentation
- 
-| Feature used | Accuracy | | Murmur Metrics | | | Extrasystole Metrics | | |
-| - | - | - | - | - | - | - | - | - |
-| | | Precision | Recall | F1-score | Precision | Recall | F1-score |
-| Mel spectrogram | 0.82 | 0.59 | 1.00 | 0.75 | 0.71 | 0.91 | 0.80 |
-| MFCC | 0.69 | 0.50 | 0.74 | 0.60 | 0.45 | 0.45 | 0.45 |
-| Chroma STFT | 0.63 | 0.40 | 0.63 | 0.49 | 0.75 | 0.27 | 0.40 |
-| Spectral Contrast | 0.55 | 0.28 | 0.26 | 0.27 | 0.20 | 0.18 | 0.19 |
-| Tonnetz | 0.45 | 0.28 | 0.84 | 0.42 | 0.64 | 0.82 | 0.72 |
-| Zero Crossing Rate | 0.54 | 0.41 | 0.63 | 0.50 | 0.29 | 0.73 | 0.41 |
-| All features Concatenated | 0.67 | 0.50 | 0.42 | 0.46 | 0.33 | 0.09 | 0.14 |
-
 <table>
 <tr>
     <th rowspan="2">Feature used</th>
