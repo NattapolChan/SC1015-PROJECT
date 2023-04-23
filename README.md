@@ -2,7 +2,7 @@
 Members:
 - Chanpaisit Nattapol ([@NattapolChan](https://github.com/NattapolChan)) | Part 1
 - Maison Sapol ([@tttennnnn](https://github.com/tttennnnn)) | Part 2
-- Saeng-nil Natthakan ([@Tanknam](https://github.com/Tanknam)) | Part 3
+- Saeng-nil Natthakan ([@Tanknam](https://github.com/Tanknam)) | Part 3 + utils
 
 # About
 In this project, we examine the [heart beat sounds dataset](https://www.kaggle.com/datasets/kinguistics/heartbeat-sounds), with a particular focus on developing the initial screening stage for cardiac pathologies in a hospital setting. Our attention is directed towards ```dataset/set_b```, which consists of heartbeat audio files obtained from clinical trials in hospitals using digital stethoscopes. The dataset provides us with audio classified into **normal**, **murmur**, and **extrasystole** conditions. Through trial and error, we have discovered interesting findings by experimenting with features that can contribute to the aforementioned classification. Our focus is then placed on classifying heartbeat audio based on different features. Later on, we also expand into studying aspects of a single promising feature as part of its possible improvements in the future.
