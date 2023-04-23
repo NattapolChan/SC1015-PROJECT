@@ -292,9 +292,11 @@ The results for each feature without frequency filtration are presented below in
 
 # What do we learn?
 - New state-of-the-art model architecture for time series
+- Underlying mathematics behind Discrete Fourier transform
 - New techniques to handle class imbalance
 - Techniques on audio feature extraction and their background meanings
 - Using ray-tune to automatically do hyperparameter tuning
+- New visualisation for signal processing
 
 # References
 - [Signal Filtering](https://swharden.com/blog/2020-09-23-signal-filtering-in-python/)
