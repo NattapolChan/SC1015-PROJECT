@@ -292,7 +292,7 @@ The results for each feature without frequency filtration are presented below in
 
 # What do we learn?
 - New state-of-the-art model architecture for time series
-- Underlying mathematics behind Discrete Fourier transform
+- Underlying mathematics behind each variation of Fourier transform
 - New techniques to handle class imbalance
 - Techniques on audio feature extraction and their background meanings
 - Using ray-tune to automatically do hyperparameter tuning
