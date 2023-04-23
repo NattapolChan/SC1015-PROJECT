@@ -270,13 +270,15 @@ The results for each feature are presented below. The feature with the highest p
 **NOTE:** Features that exhibit practical performance should be able to detect the diseased classes (murmur and extrasystole) as part of the feasible screening stage, i.e., erroneously classifying *normal* as *diseased* is not as lethal as classifying *diseased* as *normal*. The goal in this case is then to maximise the recall and precision of minority classes.
 
 # Insight
-
+- For solving class imbalance problem, oversampling with augmentation: {Adding white noise, time-shifting} tends to be better than using class weight in loss function.
+- Mel-spectrogram provides the best performance in our classification task. This may be because it provides spectral information in Mel-scale that mimic human audio perception, i.e, human can better differentiate between lower frequencies than higher frequencies sounds. 
+- MFCC, which is computed by applying Discrete Cosine Transform (DCT) on Mel-spectrogram, performs considerably worse than Mel-spectrogram. We may concluded that DCT may smooth out some important features.
+- The important frequencies for classifying murmur is in range of 0-100 and 300-500 Hz and extrasystole in range of 200 - 500 Hz.
 
 # Limitation
 - Dataset is highly imbalance in class (320 for 'normal', compared to 45, 96 for 'extrasystole' and 'murmur' respectively)
 - Number of data is considerably small
 - Detecting and removing background noise is challenging and can be inaccurate.
-- 
     
 # Reference
 - [Signal Filtering](https://swharden.com/blog/2020-09-23-signal-filtering-in-python/)
