@@ -275,7 +275,7 @@ The results for each feature without frequency filtration are presented below in
 - For solving class imbalance problem, oversampling with augmentation: {Adding white noise, time-shifting} tends to be better than using class weight in loss function.
 - Mel-spectrogram provides the best performance in our classification task. This may be because it provides spectral information in Mel-scale that mimic human audio perception, i.e, human can better differentiate between lower frequencies than higher frequencies sounds. 
 - MFCC, which is computed by applying Discrete Cosine Transform (DCT) on Mel-spectrogram, performs considerably worse than Mel-spectrogram. We may concluded that DCT may smooth out some important features.
-- The important frequencies for classifying murmur is in range of 0-100 and 300-500 Hz and extrasystole in range of 200 - 500 Hz.
+- The most important frequencies for classifying murmur is in range of 0-100 and extrasystole in range of 200 - 300 Hz.
 
 # Limitation
 - Dataset is highly imbalance in class (320 for 'normal', compared to 45, 96 for 'extrasystole' and 'murmur' respectively)
