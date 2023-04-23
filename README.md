@@ -8,7 +8,14 @@ Members:
 In this project, we examine the [heart beat sounds dataset](https://www.kaggle.com/datasets/kinguistics/heartbeat-sounds), with a particular focus on developing the initial screening stage for cardiac pathologies in a hospital setting. Our attention is directed towards ```dataset/set_b```, which consists of heartbeat audio files obtained from clinical trials in hospitals using digital stethoscopes. The dataset provides us with audio classified into **normal**, **murmur**, and **extrasystole** conditions. Through trial and error, we have discovered interesting findings by experimenting with features that can contribute to the aforementioned classification. Our focus is then placed on classifying heartbeat audio based on different features. Later on, we also expand into studying aspects of a single promising feature as part of its possible improvements in the future.
 
 # Exploratory Data Analysis (EDA)
-The number of data points in each class is determined: {normal: 320, murmur: 95, extrasystole: 46}. This indicates an imbalance in the data that needs to be addressed. We visualised the sound waveform, frequency spectrum, and power spectrogram. We identified the presence of noise in some audio files, which requires cleaning. Additionally, we noticed the variation in length of each sound data. This requires an additional step of preprocess (padding/slicing) later before training the model.
+The number of data points in each class is determined as follows,
+- ```normal``` : 320
+- ```murmur``` : 95
+- ```extrasystole``` : 46
+
+This indicates an imbalance in the data that needs to be addressed. 
+
+We estimated the heart rate in Beats per Minute (**BPM**) and illustrated the distribution among each class. We also visualised the sound waveform, frequency spectrum, and power spectrogram. We identified the presence of noise in some audio files, which requires cleaning. Additionally, we noticed the variation in length of each sound data. This requires an additional step of preprocess (padding/slicing) later before training the model.
 # Preprocess
 We denoised audio files by eliminating specific frequencies that persist in a power spectral density noted in the visualised spectrograms. The visualisations of the Short-Time Fourier Transform (STFT) before and after denoising can be seen in ```EDA+Preprocessing.ipynb```. Additionally, we attempted to reduce the effect of imbalance of data classes by introducing class weights. Unfortunately, this approach yielded unpromising results. Instead, data augmentation by adding low intensity white noise is used for oversampling the underrepresented classes (murmur and extrasystole).
 # Machine Learning models
@@ -271,21 +278,22 @@ The results for each feature without frequency filtration are presented below in
 
 **NOTE:** Features that exhibit practical performance should be able to detect the diseased classes (murmur and extrasystole) as part of the feasible screening stage, i.e., erroneously classifying *normal* as *diseased* is not as lethal as classifying *diseased* as *normal*. The goal in this case is then to maximise the recall and precision of minority classes.
 
-# Insight
+# Insights
 - For solving class imbalance problem, oversampling with augmentation: {Adding white noise, time-shifting} tends to be better than using class weight in loss function.
 - Mel-spectrogram provides the best performance in our classification task. This may be because it provides spectral information in Mel-scale that mimic human audio perception, i.e, human can better differentiate between lower frequencies than higher frequencies sounds. 
 - MFCC, which is computed by applying Discrete Cosine Transform (DCT) on Mel-spectrogram, performs considerably worse than Mel-spectrogram. We may concluded that DCT may smooth out some important features.
 - The most important frequencies for classifying murmur is in range of 0-100 and extrasystole in range of 200 - 300 Hz.
 
-# Limitation
-- Dataset is highly imbalance in class (320 for 'normal', compared to 45, 96 for 'extrasystole' and 'murmur' respectively)
-- Number of data is considerably small
+# Limitations
+- Identifying significant peaks (periodic closure of cardiac valves) remains difficult.
+- Dataset is highly unbalanced (320 for 'normal', compared to 45, 96 for 'extrasystole' and 'murmur' respectively).
+- Number of data is considerably small.
 - Detecting and removing background noise is challenging and can be inaccurate.
-    
-# Reference
+
+# References
 - [Signal Filtering](https://swharden.com/blog/2020-09-23-signal-filtering-in-python/)
 - [Audio Data Augmentation](https://pytorch.org/audio/main/tutorials/audio_data_augmentation_tutorial.html#)
-- [Fourier](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.66.6950&rep=rep1&type=pdf)
+- [Periodicity Detection](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.66.6950&rep=rep1&type=pdf)
 - [Mel Spectrogram](https://medium.com/analytics-vidhya/understanding-the-mel-spectrogram-fca2afa2ce53)
 - [MFCC](https://medium.com/@tanveer9812/mfccs-made-easy-7ef383006040)
 - [Audio Feature Extraction](https://librosa.org/doc/main/feature.html)
