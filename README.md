@@ -1,8 +1,8 @@
 # SC1015-PROJECT-B140-Team2
 Members:
-- Chanpaisit Nattapol ([@NattapolChan](https://github.com/NattapolChan))
-- Maison Sapol ([@tttennnnn](https://github.com/tttennnnn))
-- Saeng-nil Natthakan ([@Tanknam](https://github.com/Tanknam))
+- Chanpaisit Nattapol ([@NattapolChan](https://github.com/NattapolChan)) | Part 1
+- Maison Sapol ([@tttennnnn](https://github.com/tttennnnn)) | Part 2
+- Saeng-nil Natthakan ([@Tanknam](https://github.com/Tanknam)) | Part 3
 
 # About
 In this project, we examine the [heart beat sounds dataset](https://www.kaggle.com/datasets/kinguistics/heartbeat-sounds), with a particular focus on developing the initial screening stage for cardiac pathologies in a hospital setting. Our attention is directed towards ```dataset/set_b```, which consists of heartbeat audio files obtained from clinical trials in hospitals using digital stethoscopes. The dataset provides us with audio classified into **normal**, **murmur**, and **extrasystole** conditions. Through trial and error, we have discovered interesting findings by experimenting with features that can contribute to the aforementioned classification. Our focus is then placed on classifying heartbeat audio based on different features. Later on, we also expand into studying aspects of a single promising feature as part of its possible improvements in the future.
@@ -289,6 +289,12 @@ The results for each feature without frequency filtration are presented below in
 - Dataset is highly unbalanced (320 for 'normal', compared to 45, 96 for 'extrasystole' and 'murmur' respectively).
 - Number of data is considerably small.
 - Detecting and removing background noise is challenging and can be inaccurate.
+
+# What do we learn?
+- New state-of-the-art model architecture for time series
+- New techniques to handle class imbalance
+- Techniques on audio feature extraction and their background meanings
+- Using ray-tune to automatically do hyperparameter tuning
 
 # References
 - [Signal Filtering](https://swharden.com/blog/2020-09-23-signal-filtering-in-python/)
